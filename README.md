@@ -71,3 +71,5 @@ Once compiled, a **diagram** should pop up showing the logic connections.
    **Tools > Netlist Viewers > RTL Viewer**  
 3. **Tada! 🎉**  
    You can now see how everything is connected in a visual diagram.
+
+[Download the PDF](./Examples/four_inputs_output.pdf)
