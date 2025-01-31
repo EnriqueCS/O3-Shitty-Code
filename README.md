@@ -72,4 +72,4 @@ Once compiled, a **diagram** should pop up showing the logic connections.
 3. **Tada! 🎉**  
    You can now see how everything is connected in a visual diagram.
 
-[Download the PDF](./Examples/four_inputs_output.pdf)
+[Download four_inputs_output.pdf](./Examples/four_inputs_output.pdf)
