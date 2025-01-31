@@ -28,3 +28,16 @@ The **decode stage** in a RISC-V processor interprets the fetched instruction an
 - **rd** – Destination register.
 - **func3, func7** – Function codes specifying the exact operation (e.g., `ADD` vs. `SUB`).
 - **Immediate (imm)** – Constant value used in certain instructions (e.g., offsets, branch targets).
+
+## RV32I Base Integer Instructions
+
+1. **Create `opcode_decoder` Module**  
+   - A module that examines the first 7 bits (opcode) of a 32-bit instruction and identifies the core instruction format (e.g., R, I, S, B, U, J).
+
+2. **Add Debugging Statements**  
+   - Implement "print statements" to display the identified format for each instruction during testing. This helps in verifying that the opcode decoding is working correctly.
+
+3. **Create Instruction Splitters**  
+   - A utility to divide the 32-bit instruction into its components (e.g., opcode, func3, func7, registers, immediate). This is useful for debugging and understanding how the instruction is interpreted.
+
+I think this is a good stopping point for today (01/31/25 @ 1:48 AM). Next time, I'll focus on writing sanity checks.
