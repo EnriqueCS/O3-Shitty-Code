@@ -14,3 +14,7 @@ Intel **Quartus Prime** is software for designing and programming **Intel FPGAs*
 It helps turn your code into a working circuit, test it, and load it onto the FPGA.
 
 [Read More - Simple Quartus](./Guides/BasicQuartus.md)
+
+We are choosing the RISC-V instruction set because it is open-source, well-documented, and widely supported, making it an ideal choice for our out-of-order processor implementation.
+
+[Read More - RISC-V Reference](https://www.cs.sfu.ca/~ashriram/Courses/CS295/assets/notebooks/RISCV/RISCV_CARD.pdf)
