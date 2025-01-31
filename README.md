@@ -28,5 +28,3 @@ The **decode stage** in a RISC-V processor interprets the fetched instruction an
 - **rd** – Destination register.
 - **func3, func7** – Function codes specifying the exact operation (e.g., `ADD` vs. `SUB`).
 - **Immediate (imm)** – Constant value used in certain instructions (e.g., offsets, branch targets).
-
-Starting with decoding provides a clear foundation for building the execution pipeline efficiently.
