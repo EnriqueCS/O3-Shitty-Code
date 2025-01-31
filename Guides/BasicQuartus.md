@@ -8,7 +8,7 @@ Just install it as-is—don't change any settings, just keep clicking **"Next."*
 
 ---
 
-### 2. Testing with `four_inputs.v`
+### 2. Testing with `./Examples/four_inputs.v`
 We will use the `four_inputs.v` file to test Quartus.  
 This file should have **4 input wires** and **1 output** that follows the logic:  
 **(v1 AND v2) OR (v3 AND v4).**  
