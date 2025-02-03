@@ -41,3 +41,10 @@ The **decode stage** in a RISC-V processor interprets the fetched instruction an
    - A utility to divide the 32-bit instruction into its components (e.g., opcode, func3, func7, registers, immediate). This is useful for debugging and understanding how the instruction is interpreted.
 
 I think this is a good stopping point for today (01/31/25 @ 1:48 AM). Next time, I'll focus on writing sanity checks.
+
+02/02/2025 @ 2:30pm
+I haven’t added any sanity checks yet. 
+I spent most of my time upfront mapping out the instruction fields and structuring the design. 
+I also leveraged an LLM to help generate some of the wiring, which sped up the process. Overall, the structure of the diagram appears correct.
+
+[View Progress - 02/02/2025](./VisualProgress/Progress02_02_2025.pdf)

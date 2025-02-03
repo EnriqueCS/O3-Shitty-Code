@@ -1,35 +1,52 @@
 `timescale 1ns / 1ps
+`ifndef OPCODE_DECODER_V
+`define OPCODE_DECODER_V
 
 module opcode_decoder(
-    input [31:0] instruction,  // 32-bit RISC-V instruction
-    // 3-bit format: R=000, I=001, S=010, B=011, U=100, J=101
-    output reg [2:0] fmt       
+    input [31:0] instruction,   // 32-bit RISC-V instruction
+    output reg [1:0] group,     // 2-bit group ID
+    output reg specifier,       // 1-bit specifier
+    output reg [24:0] instruction_data, // 25-bit instruction data (everything except opcode)
+    output reg [6:0] opcode_out // 7-bit opcode
 );
 
-    // Opcodes for each format
-    localparam OPCODE_R_TYPE   = 7'b0110011;  // R-Type
-    localparam OPCODE_I_ALU    = 7'b0010011;  // I-Type (ALU immediate)
-    localparam OPCODE_I_LOAD   = 7'b0000011;  // I-Type (Load)
-    localparam OPCODE_I_JALR   = 7'b1100111;  // I-Type (JALR)
-    localparam OPCODE_S_TYPE   = 7'b0100011;  // S-Type (Store)
-    localparam OPCODE_B_TYPE   = 7'b1100011;  // B-Type (Branch)
-    localparam OPCODE_U_LUI    = 7'b0110111;  // U-Type (LUI)
-    localparam OPCODE_U_AUIPC  = 7'b0010111;  // U-Type (AUIPC)
-    localparam OPCODE_J_TYPE   = 7'b1101111;  // J-Type (JAL)
-
     always @(*) begin
-        case (instruction[6:0])  // Check the first 7 bits (opcode)
-            OPCODE_R_TYPE:    fmt = 3'b000;  // R-Type
-            OPCODE_I_ALU,
-            OPCODE_I_LOAD,
-            OPCODE_I_JALR:    fmt = 3'b001;  // I-Type
-            OPCODE_S_TYPE:    fmt = 3'b010;  // S-Type
-            OPCODE_B_TYPE:    fmt = 3'b011;  // B-Type
-            OPCODE_U_LUI,
-            OPCODE_U_AUIPC:   fmt = 3'b100;  // U-Type
-            OPCODE_J_TYPE:    fmt = 3'b101;  // J-Type
-            default:          fmt = 3'b111;  // Invalid/Other
+        opcode_out = instruction[6:0];       // Extract opcode
+        instruction_data = instruction[31:7]; // Remaining 25 bits
+
+        // Grouping logic based on opcode
+        case (opcode_out)
+            7'b0110011, // R-Type
+            7'b0010011, // I-Type (ALU immediate)
+            7'b0000011, // I-Type (Load)
+            7'b1100111: // I-Type (JALR)
+            begin
+                group = 2'b01;
+                specifier = (opcode_out == 7'b0110011) ? 1'b0 : 1'b1;
+            end
+
+            7'b0100011, // S-Type (Store)
+            7'b1100011: // B-Type (Branch)
+            begin
+                group = 2'b10;
+                specifier = (opcode_out == 7'b0100011) ? 1'b0 : 1'b1;
+            end
+
+            7'b0110111, // U-Type (LUI)
+            7'b0010111, // U-Type (AUIPC)
+            7'b1101111: // J-Type (JAL)
+            begin
+                group = 2'b11;
+                specifier = (opcode_out == 7'b1101111) ? 1'b0 : 1'b1;
+            end
+
+            default: begin
+                group = 2'b00; // Invalid/Other
+                specifier = 1'b0;
+            end
         endcase
     end
 
 endmodule
+
+`endif // OPCODE_DECODER_V
