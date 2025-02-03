@@ -46,5 +46,6 @@ I think this is a good stopping point for today (01/31/25 @ 1:48 AM). Next time,
 I haven’t added any sanity checks yet. 
 I spent most of my time upfront mapping out the instruction fields and structuring the design. 
 I also leveraged an LLM to help generate some of the wiring, which sped up the process. Overall, the structure of the diagram appears correct.
+Ignore the last section of the diagram.
 
 [View Progress - 02/02/2025](./VisualProgress/Progress02_02_2025.pdf)
